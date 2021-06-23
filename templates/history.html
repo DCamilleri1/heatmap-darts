@@ -1,0 +1,60 @@
+<style>
+    #history {
+        color: navy;
+    }
+</style>
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <table class='summary_table'>
+        <thead>
+            <tr id='exempt_row'>
+                <th>Transaction</th>
+                <th>Stock</th>
+                <th>Symbol</th>
+                <th>Price</th>
+                <th>Shares</th>
+                <th>Total Paid</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(loops) %}
+
+                <tr>
+                    <td>{{ rows[i]['type'] }}</td>
+                    <td>{{ rows[i]['stocks'] }}</td>
+                    <td>{{ rows[i]['symbol'] }}</td>
+                    <td>{{ rows[i]['price'] | usd }}</td>
+                    <td>{{ rows[i]['quantity'] }}</td>
+                    <td>{{ total_value[i] | usd }}</td>
+                    <td>{{ rows[i]['time'] }}</td>
+                </tr>
+            {% endfor %}
+
+                <tr id='exempt_row'>
+                    <td><b>Total purchased</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>{{buys | usd }}</b></td>
+                </tr>
+                <tr id='exempt_row'>
+                    <td><b>Total sold</b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td><b>{{sales | usd}}</b></td>
+                </tr>
+        </tbody>
+    </table>
+
+{% endblock %}

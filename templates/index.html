@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <table class='summary_table'>
+        <thead>
+            <tr id='exempt_row'>
+                <th>Stock</th>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Current Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(loops) %}
+
+                <tr>
+                    <td>{{ rows[i]['stocks'] }}</td>
+                    <td>{{ rows[i]['symbol'] }}</td>
+                    <td>{{ rows[i]['quantity'] }}</td>
+                    <td>{{stock_value[i] | usd }}</td>
+                    <td>{{current_value[i] | usd }}</td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <td>CASH</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{cash | usd}}</td>
+            </tr>
+            <tr id='exempt_row'>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td><b>{{total | usd}}</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
